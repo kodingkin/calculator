@@ -142,6 +142,12 @@ body.addEventListener("keydown", (event) => {
             button.click();
         }
     }
+    else if (event.key === "*") {
+        button = document.querySelector("#keyx");
+        if (button) {
+            button.click();
+        }
+    }
     else {
         button = document.querySelector(`#key${event.key}`)
         if (button) {
