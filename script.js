@@ -1,18 +1,7 @@
-const add = function(num1, num2) {
-    return (num1 + num2);
-}
-
-const subtract = function(num1, num2) {
-    return (num1 - num2);
-}
-
-const multiply = function(num1, num2) {
-    return num1 * num2;
-}
-
-const divide = function(num1, num2) {
-    return num1 / num2;
-}
+const add = ((num1, num2) => num1 + num2)
+const subtract = ((num1, num2) => num1 - num2)
+const multiply = ((num1, num2) => num1 * num2)
+const divide = ((num1, num2) => num1 / num2)
 
 let isResult = false;
 
@@ -48,8 +37,8 @@ const calculate = function() {
         return false;
     }
 
+    // turn all number into float (for the dot)
     const maped = NumArr.map((num) => parseFloat(num))
-    console.log(maped);
     
     for (let i = 0; i < exxArr.length; i++) {
         const exx = exxArr[i];
@@ -72,7 +61,6 @@ const calculate = function() {
 
 const exxController = function() {
     let input = document.querySelector(".display").innerHTML;
-    console.log(input);
     const exx = ["+", "-", "x", "/"];
     if (exx.some(ex => input.includes(ex))) {
         const success = calculate();
@@ -88,7 +76,6 @@ const dotController = function() {
     let input = document.querySelector(".display").innerHTML;
     const NumArr = input.split(/[+\-x/]/);
     const trimNumArr = NumArr.filter((item) => item != "");
-    console.log(trimNumArr);
     if (trimNumArr[(trimNumArr.length - 1)].includes(".")) {
         return;
     }
