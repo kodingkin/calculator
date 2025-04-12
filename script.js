@@ -6,7 +6,7 @@ const divide = ((num1, num2) => num1 / num2)
 let isResult = false;
 
 const display = function() {
-    const string = this.id.toString();
+    const string = this.value.toString();
     const display = document.querySelector(".display");
 
     // if current displaying result of calculation, pressing number should reset the display and only display the new number entered
@@ -62,13 +62,16 @@ const calculate = function() {
 const exxController = function() {
     let input = document.querySelector(".display").innerHTML;
     const exx = ["+", "-", "x", "/"];
+    if (input === "") {
+        return;
+    }
     if (exx.some(ex => input.includes(ex))) {
         const success = calculate();
         if (success === false) {
             return;
         }
     }
-    document.querySelector(".display").innerHTML += this.id;
+    document.querySelector(".display").innerHTML += this.value;
     isResult = false;
 }
 
@@ -76,6 +79,15 @@ const dotController = function() {
     let input = document.querySelector(".display").innerHTML;
     const NumArr = input.split(/[+\-x/]/);
     const trimNumArr = NumArr.filter((item) => item != "");
+    if (isResult === true) {
+        document.querySelector(".display").innerHTML = "."
+        isResult = false;
+        return;
+    }
+    if (input === "") {
+        document.querySelector(".display").innerHTML += "."
+        return;
+    }
     if (trimNumArr[(trimNumArr.length - 1)].includes(".")) {
         return;
     }
@@ -114,3 +126,26 @@ dotButton.addEventListener("click", dotController);
 
 const backButton = document.querySelector(".backspace");
 backButton.addEventListener("click", backController);
+
+const body = document.body;
+body.addEventListener("keydown", (event) => {
+    let button;
+    if (event.key === "+" || event.key === "-" || event.key === "/" || event.key === "." || event.key === "=") {
+        button = document.querySelector(`#key\\${event.key}`)
+        if (button) {
+            button.click();
+        }
+    }
+    else if (event.key === "Enter") {
+        button = document.querySelector(".equal");
+        if (button) {
+            button.click();
+        }
+    }
+    else {
+        button = document.querySelector(`#key${event.key}`)
+        if (button) {
+            button.click();
+        }
+    }
+})
