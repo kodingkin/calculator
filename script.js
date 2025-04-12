@@ -37,6 +37,10 @@ const calculate = function() {
         return false;
     }
 
+    if (exxArr.length === 0) {
+        return false;
+    }
+
     // turn all number into float (for the dot)
     const maped = NumArr.map((num) => parseFloat(num))
     
