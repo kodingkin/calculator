@@ -97,6 +97,16 @@ const dotController = function() {
     }
 }
 
+const backController = function() {
+    const input = document.querySelector(".display").innerHTML;
+    const originalLen = input.length;
+    let newDisplay = "";
+    for (let i = 0; i < (originalLen - 1); i++) {
+        newDisplay += input[i];
+    }
+    document.querySelector(".display").innerHTML = newDisplay;
+}
+
 const numberButtons = document.querySelectorAll(".number");
 numberButtons.forEach((button) => {
     button.addEventListener("click", display);
