@@ -72,6 +72,8 @@ const exxController = function() {
     if (exx.some(ex => input.includes(ex))) {
         const success = calculate();
         if (success === false) {
+            backController();
+            document.querySelector(".display").innerHTML += this.value;
             return;
         }
     }
